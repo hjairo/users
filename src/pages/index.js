@@ -2,7 +2,6 @@ import * as React from 'react';
 import {
   Box,
   Flex,
-  useColorModeValue,
   Center,
   Container,
   Stack,
@@ -14,13 +13,14 @@ import {
   Text
 } from '@chakra-ui/react';
 import GroupIcon from '../Components/GroupIcon';
-import UserIcon from '../Components/UserIcon'
+import UserIcon from '../Components/UserIcon';
+import data from '../content/users.json';
 
 function App() {
   return (
   <>
     <Container>
-      <Box bg="#fff" boxShadow="md" h="64px">
+      <Box bg="#fff" boxShadow="2xl" h="64px">
         <Center>
           <GroupIcon />{" "}
           <Flex h={16} alignItems={'center'} color="#4a4a4a" fontSize="18px">
@@ -28,26 +28,27 @@ function App() {
           </Flex>
         </Center>
       </Box>
-      <Stack bg={useColorModeValue('gray.100', 'gray.900')} spacing="16px" alignItems={'center'}>
+      <Stack bg="#f1f5f6" alignItems={'center'} h={620}>
+            {data.map(users => 
             <Accordion allowToggle bg="#fff" boxShadow="md" w="95%" m="16px">
               <AccordionItem>
                   <AccordionButton h="80px">
                     <UserIcon />
                     <Box flex="1" textAlign="left">
-                      <Text fontSize="12px" fontWeight="semibold" color="#4a4a4a">Alexander the Great</Text>
-                      <Text fontSize="10px" color="#4a4a4a">Administrator</Text>
-                      <Text fontSize="10px" color="#7e7e7e">email@email.com</Text>
+                      <Text fontSize="12px" fontWeight="semibold" color="#4a4a4a">{users.firstName + " " + users.lastName}</Text>
+                      <Text fontSize="10px" color="#4a4a4a">{users.role}</Text>
+                      <Text fontSize="10px" color="#7e7e7e">{users.email}</Text>
                     </Box>
                     <AccordionIcon color="#7e7e7e" />
                   </AccordionButton>
-                  <AccordionPanel pb={4} h="190px" ml="30px">
+                  <AccordionPanel pb={4} h="190px" ml="53px">
                     <Stack flex="1" textAlign="left" pl="10px">
                       <Box>
                         <Text fontSize="10px" fontWeight="semibold" color="#4a4a4a">
                           Address
                         </Text>
                         <Text fontSize="10px" color="#7e7e7e">
-                          1234 Not a Fake Street, Dallas, TX 75201
+                        {users.street + ", " + users.city + ", " + users.state + " " + users.zip}
                         </Text>
                       </Box>
                       <Box>
@@ -55,7 +56,7 @@ function App() {
                           Phone
                         </Text>
                         <Text fontSize="10px" color="#7e7e7e">
-                          (555) 867-5309
+                          {users.phone}
                         </Text>
                       </Box>
                       <Box>
@@ -63,7 +64,7 @@ function App() {
                           Created At
                         </Text>
                         <Text fontSize="10px" color="#7e7e7e">
-                        1/1/70 12:01 AM
+                        {users.createdAt}
                         </Text>
                       </Box>
                       <Box>
@@ -71,13 +72,14 @@ function App() {
                           Last Logged In
                         </Text>
                         <Text fontSize="10px" color="#7e7e7e">
-                          1/2/70 12:02 AM
+                          {users.lastLoggedIn}
                         </Text>
                       </Box>
                     </Stack>
                   </AccordionPanel>
               </AccordionItem>
             </Accordion>
+            )}
       </Stack>
     </Container>
   </>
