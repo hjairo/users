@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Box } from "@chakra-ui/react";
 
+// took the svg properties from the provided files to create a compatible component for Chakra UI
 function UserIcon({fill}) {
   return (
     <Box
@@ -10,6 +11,7 @@ function UserIcon({fill}) {
       height="48px"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
+      // passes through fill prop that's used to conditionally render icon colors based off of the user's role
       fill={fill}
       mr="15px"
     >

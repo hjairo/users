@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Box } from "@chakra-ui/react";
 
+// took the svg properties from the provided files to create a compatible component for Chakra UI
 function GroupIcon() {
   return (
     <Box

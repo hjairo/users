@@ -23,10 +23,11 @@ import GroupIcon from '../Components/GroupIcon';
 import UserIcon from '../Components/UserIcon';
 import data from '../content/users.json';
 
+// Formats phone numbers according to the assessment's requirements
 let formatPhoneNumber = (phone) => {
   //Filter only numbers from the input
   let cleaned = ('' + phone).replace(/\D/g, ''); 
-  //Check if the input is of correct length
+  //Check if the input is of correct length using custom regex
   let match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
   if (match) {
     return '(' + match[1] + ') ' + match[2] + '-' + match[3]
@@ -38,7 +39,7 @@ function App() {
   return (
   <>
   <ChakraProvider>
-    <Box bg="#f1f5f6" h="220vh">
+    <Box bg="#f1f5f6" h="100vh" overflow="auto">
     <Container>
       <Box bg="#fff" boxShadow="md" h="64px" mb="16px">
         <Center>
@@ -49,7 +50,9 @@ function App() {
         </Center>
       </Box>
       <Stack alignItems={'center'} spacing="16px" pl="12px" pr="12px">
+            {/* Maps data from the provided users.json file to their respective places on the user's card */}
             {data.map(users => {
+            // parses timestamp to be used for formatting.
             let createdAt = ZonedDateTime.parse(users.createdAt);
             let loggedAt = ZonedDateTime.parse(users.lastLoggedIn);
             return (
@@ -95,6 +98,7 @@ function App() {
                           Created At
                         </Text>
                         <Text fontSize="10px" color="#7e7e7e">
+                        {/* Formats dates according to assessment's requirements */}
                         {createdAt.format(
                           DateTimeFormatter.ofPattern("M/d/yy [HH:mm] a").withLocale(Locale.US)
                         )}
@@ -105,6 +109,7 @@ function App() {
                           Last Logged In
                         </Text>
                         <Text fontSize="10px" color="#7e7e7e">
+                        {/* Formats dates according to assessment's requirements */}
                           {loggedAt.format(
                           DateTimeFormatter.ofPattern("M/d/yy [HH:mm] a").withLocale(Locale.US)
                         )}
