@@ -4,6 +4,7 @@ import {
   Flex,
   Center,
   Container,
+  ChakraProvider,
   Stack,
   Accordion,
   AccordionItem,
@@ -19,8 +20,10 @@ import data from '../content/users.json';
 function App() {
   return (
   <>
+  <ChakraProvider>
+    <Box bg="#f1f5f6" h="100vh">
     <Container>
-      <Box bg="#fff" boxShadow="2xl" h="64px">
+      <Box bg="#fff" boxShadow="md" h="64px" mb="16px">
         <Center>
           <GroupIcon />{" "}
           <Flex h={16} alignItems={'center'} color="#4a4a4a" fontSize="18px">
@@ -28,9 +31,9 @@ function App() {
           </Flex>
         </Center>
       </Box>
-      <Stack bg="#f1f5f6" alignItems={'center'} h={620}>
+      <Stack alignItems={'center'} spacing="16px">
             {data.map(users => 
-            <Accordion allowToggle bg="#fff" boxShadow="md" w="95%" m="16px">
+            <Accordion allowToggle bg="#fff" boxShadow="md" w="561px">
               <AccordionItem>
                   <AccordionButton h="80px">
                     <UserIcon />
@@ -82,6 +85,8 @@ function App() {
             )}
       </Stack>
     </Container>
+    </Box>
+    </ChakraProvider>
   </>
   );
 }
