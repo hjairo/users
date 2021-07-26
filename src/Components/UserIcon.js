@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Box } from "@chakra-ui/react";
 
-function UserIcon() {
+function UserIcon({fill}) {
   return (
     <Box
       as="svg"
@@ -10,7 +10,7 @@ function UserIcon() {
       height="48px"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      fill="#2081c3"
+      fill={fill}
       mr="15px"
     >
       <path 

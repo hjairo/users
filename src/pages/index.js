@@ -48,15 +48,23 @@ function App() {
           </Flex>
         </Center>
       </Box>
-      <Stack alignItems={'center'} spacing="16px">
+      <Stack alignItems={'center'} spacing="16px" pl="12px" pr="12px">
             {data.map(users => {
             let createdAt = ZonedDateTime.parse(users.createdAt);
             let loggedAt = ZonedDateTime.parse(users.lastLoggedIn);
             return (
-            <Accordion allowToggle bg="#fff" boxShadow="md" w="561px">
+            <Accordion allowToggle bg="#fff" boxShadow="md" w="full">
               <AccordionItem>
                   <AccordionButton h="80px">
-                    <UserIcon />
+                    {(users.role === "Administrator") ? <UserIcon 
+                      fill="#2081c3" 
+                      /> : 
+                      (users.role === "User") ? <UserIcon
+                      fill="#68aaab"
+                     /> :
+                     (users.role === "Viewer") ? <UserIcon 
+                      fill="#7e7e7e"
+                     /> : ""}
                     <Box flex="1" textAlign="left">
                       <Text fontSize="12px" fontWeight="semibold" color="#4a4a4a">{users.firstName + " " + users.lastName}</Text>
                       <Text fontSize="10px" color="#4a4a4a">{users.role}</Text>
@@ -65,7 +73,7 @@ function App() {
                     <AccordionIcon color="#7e7e7e" />
                   </AccordionButton>
                   <AccordionPanel pb={4} h="190px" ml="53px">
-                    <Stack flex="1" textAlign="left" pl="10px">
+                    <Stack flex="1" textAlign="left" pl="10px" spacing="12px">
                       <Box>
                         <Text fontSize="10px" fontWeight="semibold" color="#4a4a4a">
                           Address
