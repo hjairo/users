@@ -49,7 +49,7 @@ function App() {
           </Flex>
         </Center>
       </Box>
-      <Stack alignItems={'center'} spacing="16px" pl="12px" pr="12px">
+      <Stack alignItems={'center'} spacing="16px" px="12px">
             {/* Maps data from the provided users.json file to their respective places on the user's card */}
             {data.map(users => {
             // parses timestamp to be used for formatting.
